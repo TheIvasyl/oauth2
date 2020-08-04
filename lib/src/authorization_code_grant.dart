@@ -186,20 +186,13 @@ class AuthorizationCodeGrant {
       scopes = scopes.toList();
     }
 
-    _codeVerifier = _createCodeVerifier();
-    var codeChallenge = base64Url
-        .encode(sha256.convert(ascii.encode(_codeVerifier)).bytes)
-        .replaceAll('=', '');
-
     _redirectEndpoint = redirect;
     _scopes = scopes;
     _stateString = state;
     var parameters = {
       'response_type': 'code',
       'client_id': identifier,
-      'redirect_uri': redirect.toString(),
-      'code_challenge': codeChallenge,
-      'code_challenge_method': 'S256'
+      'redirect_uri': redirect.toString()
     };
 
     if (state != null) parameters['state'] = state;
