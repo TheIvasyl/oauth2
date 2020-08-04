@@ -289,8 +289,7 @@ class AuthorizationCodeGrant {
     var body = {
       'grant_type': 'authorization_code',
       'code': authorizationCode,
-      'redirect_uri': _redirectEndpoint.toString(),
-      'code_verifier': _codeVerifier
+      'redirect_uri': _redirectEndpoint.toString()
     };
 
     if (_basicAuth && secret != null) {
