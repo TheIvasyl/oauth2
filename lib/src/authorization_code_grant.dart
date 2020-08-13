@@ -303,19 +303,27 @@ class AuthorizationCodeGrant {
 
     var response =
         await _httpClient.post(tokenEndpoint, headers: headers, body: body);
+    
+    var sResponseBody = jsonDecode(response.body);
 
+    String instanceUrl = sResponseBody['instance_url'];
     var credentials = handleAccessTokenResponse(
         response, tokenEndpoint, startTime, _scopes, _delimiter,
         getParameters: _getParameters);
+
+    print(instanceUrl);
+
     return Client(credentials,
         identifier: identifier,
         secret: secret,
         basicAuth: _basicAuth,
         httpClient: _httpClient,
+        instanceUrl: instanceUrl,
         onCredentialsRefreshed: _onCredentialsRefreshed);
-  }
 
-  /// Randomly generate a 128 character string to be used as the PKCE code verifier
+
+
+    /// Randomly generate a 128 character string to be used as the PKCE code verifier
   static String _createCodeVerifier() {
     return List.generate(
         128, (i) => _charset[Random.secure().nextInt(_charset.length)]).join();

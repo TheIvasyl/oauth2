@@ -65,6 +65,8 @@ class Client extends http.BaseClient {
   Credentials get credentials => _credentials;
   Credentials _credentials;
 
+  String instanceUrl;
+
   /// Callback to be invoked whenever the credentials refreshed.
   final CredentialsRefreshedCallback _onCredentialsRefreshed;
 
@@ -86,10 +88,11 @@ class Client extends http.BaseClient {
   /// Throws an [ArgumentError] if [secret] is passed without [identifier].
   Client(this._credentials,
       {this.identifier,
-      this.secret,
-      CredentialsRefreshedCallback onCredentialsRefreshed,
-      bool basicAuth = true,
-      http.Client httpClient})
+        this.secret,
+        CredentialsRefreshedCallback onCredentialsRefreshed,
+        bool basicAuth = true,
+        this.instanceUrl,
+        http.Client httpClient})
       : _basicAuth = basicAuth,
         _onCredentialsRefreshed = onCredentialsRefreshed,
         _httpClient = httpClient ?? http.Client() {
