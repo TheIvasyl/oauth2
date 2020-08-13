@@ -303,7 +303,7 @@ class AuthorizationCodeGrant {
 
     var response =
         await _httpClient.post(tokenEndpoint, headers: headers, body: body);
-    
+
     var sResponseBody = jsonDecode(response.body);
 
     String instanceUrl = sResponseBody['instance_url'];
