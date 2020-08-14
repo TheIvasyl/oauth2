@@ -302,7 +302,7 @@ class AuthorizationCodeGrant {
     }
 
     var response =
-        await _httpClient.post(tokenEndpoint, headers: headers, body: body);
+    await _httpClient.post(tokenEndpoint, headers: headers, body: body);
 
     var sResponseBody = jsonDecode(response.body);
 
@@ -320,6 +320,7 @@ class AuthorizationCodeGrant {
         httpClient: _httpClient,
         instanceUrl: instanceUrl,
         onCredentialsRefreshed: _onCredentialsRefreshed);
+  }
 
 
 
