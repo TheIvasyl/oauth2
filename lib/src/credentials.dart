@@ -66,6 +66,8 @@ class Credentials {
   /// found in its documentation.
   final List<String> scopes;
 
+  final String instanceUrl;
+
   /// The date at which these credentials will expire.
   ///
   /// This is likely to be a few seconds earlier than the server's idea of the
@@ -111,6 +113,7 @@ class Credentials {
       this.idToken,
       this.tokenEndpoint,
       Iterable<String> scopes,
+      this.instanceUrl,
       this.expiration,
       String delimiter,
       Map<String, dynamic> Function(MediaType mediaType, String body)
@@ -172,6 +175,7 @@ class Credentials {
         idToken: parsed['idToken'],
         tokenEndpoint: tokenEndpoint,
         scopes: (scopes as List).map((scope) => scope as String),
+        instanceUrl: parsed['instanceUrl'],
         expiration: expiration);
   }
 
@@ -186,6 +190,7 @@ class Credentials {
         'tokenEndpoint':
             tokenEndpoint == null ? null : tokenEndpoint.toString(),
         'scopes': scopes,
+        'instanceUrl': instanceUrl,
         'expiration':
             expiration == null ? null : expiration.millisecondsSinceEpoch
       });
